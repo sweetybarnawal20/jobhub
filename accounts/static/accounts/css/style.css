@@ -242,3 +242,74 @@ body {
     }
 
 }
+
+/* Dashboard Link Buttons */
+
+a.dashboard-button {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 1;
+    transition: background-color 0.2s;
+}
+
+a.dashboard-button:hover {
+    background-color: #1D62AD;
+}
+
+/* Job Management Actions */
+
+.job-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.delete-button {
+    display: inline-block;
+    background-color: #DC3545;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.delete-button:hover {
+    background-color: #B02A37;
+}
+
+/* Job Search and Filters */
+
+.job-search-card {
+    margin-bottom: 30px;
+}
+
+.job-search-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.job-search-grid .form-group {
+    margin-bottom: 15px;
+}
+
+.clear-button {
+    display: inline-block;
+    margin-left: 12px;
+    color: #2878D0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.clear-button:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+
+    .job-search-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

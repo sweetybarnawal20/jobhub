@@ -20,17 +20,17 @@
         <div class="dashboard-card">
             <h3>Post a Job</h3>
             <p>Create a new job opportunity and reach potential candidates.</p>
-            <button class="dashboard-button" disabled>
-                Create Job
-            </button>
+            <a href="{% url 'create_job' %}" class="dashboard-button">
+               Create Job
+            </a>
         </div>
 
         <div class="dashboard-card">
             <h3>Manage Jobs</h3>
             <p>View and manage your existing job postings.</p>
-            <button class="dashboard-button" disabled>
-                Manage Jobs
-            </button>
+            <a href="{% url 'manage_jobs' %}" class="dashboard-button">
+               Manage Jobs
+            </a>
         </div>
 
         <div class="dashboard-card">

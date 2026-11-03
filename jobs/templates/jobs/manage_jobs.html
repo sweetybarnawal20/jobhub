@@ -1,0 +1,72 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Manage Jobs | JobHub{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Manage Jobs</h1>
+            <p>View and manage your job postings.</p>
+        </div>
+
+        <a href="{% url 'create_job' %}" class="dashboard-button">
+            Post New Job
+        </a>
+    </div>
+
+    {% if jobs %}
+
+        <div class="dashboard-grid">
+
+            {% for job in jobs %}
+
+                <div class="dashboard-card">
+
+                    <h3>{{ job.title }}</h3>
+
+                    <p><strong>Location:</strong> {{ job.location }}</p>
+
+                    <p><strong>Salary:</strong>
+                        {{ job.salary|default:"Not specified" }}
+                    </p>
+
+                    <p><strong>Job Type:</strong> {{ job.get_job_type_display }}</p>
+
+                    <p><strong>Posted:</strong> {{ job.created_at|date:"M d, Y" }}</p>
+                    <div class="job-actions">
+
+    <a href="{% url 'edit_job' job.id %}" class="dashboard-button">
+        Edit
+    </a>
+
+    <a href="{% url 'delete_job' job.id %}" class="delete-button">
+        Delete
+    </a>
+
+</div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="dashboard-card">
+            <h3>No Jobs Posted Yet</h3>
+            <p>You haven't created any job postings.</p>
+
+            <a href="{% url 'create_job' %}" class="dashboard-button">
+                Create Your First Job
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

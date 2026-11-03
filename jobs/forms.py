@@ -1,0 +1,23 @@
+from django import forms
+from .models import Job
+
+
+class JobForm(forms.ModelForm):
+
+    class Meta:
+        model = Job
+
+        fields = [
+            "title",
+            "description",
+            "location",
+            "salary",
+            "job_type",
+        ]
+
+        widgets = {
+            "description": forms.Textarea(attrs={
+                "rows": 5,
+                "placeholder": "Describe the job responsibilities and requirements"
+            }),
+        }
