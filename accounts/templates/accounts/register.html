@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JobHub - Register</title>
+</head>
+
+<body>
+
+    <h1>JobHub</h1>
+    <h2>Create Your Account</h2>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div>
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>Select Account Type</label>
+
+            <select name="role" required>
+                <option value="">Choose your role</option>
+                <option value="CANDIDATE">Candidate</option>
+                <option value="EMPLOYER">Employer</option>
+            </select>
+        </div>
+
+        <br>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p>
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+
+</body>
+</html>

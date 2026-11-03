@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from .models import User
 
 
 def login_view(request):
@@ -28,6 +29,50 @@ def login_view(request):
         )
 
     return render(request, "accounts/login.html")
+def register_view(request):
+    if request.user.is_authenticated:
+        return redirect_user(request.user)
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
+        role = request.POST.get("role")
+
+        if password != confirm_password:
+            return render(
+                request,
+                "accounts/register.html",
+                {"error": "Passwords do not match."}
+            )
+
+        if User.objects.filter(username=username).exists():
+            return render(
+                request,
+                "accounts/register.html",
+                {"error": "Username already exists."}
+            )
+
+        if role not in ["CANDIDATE", "EMPLOYER"]:
+            return render(
+                request,
+                "accounts/register.html",
+                {"error": "Please select a valid role."}
+            )
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            role=role
+        )
+
+        login(request, user)
+
+        return redirect_user(user)
+
+    return render(request, "accounts/register.html")
 
 
 def logout_view(request):
