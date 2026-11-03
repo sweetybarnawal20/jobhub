@@ -1,41 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>JobHub - Login</title>
-</head>
-<p>
-    Don't have an account?
-    <a href="{% url 'register' %}">Register</a>
-</p>
-<body>
+{% extends 'accounts/base.html' %}
 
-    <h1>JobHub</h1>
+{% block title %}Login | JobHub{% endblock %}
 
-    <h2>Login</h2>
+{% block content %}
 
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
+<div class="auth-container">
 
-    <form method="POST">
-        {% csrf_token %}
+    <div class="auth-card">
 
-        <div>
-            <label>Username</label>
-            <input type="text" name="username" required>
-        </div>
+        <h1>Welcome Back!</h1>
 
-        <br>
+        <p class="auth-subtitle">
+            Login to continue your JobHub journey.
+        </p>
 
-        <div>
-            <label>Password</label>
-            <input type="password" name="password" required>
-        </div>
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
 
-        <br>
+        <form method="POST">
+            {% csrf_token %}
 
-        <button type="submit">Login</button>
-    </form>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username"
+                       placeholder="Enter your username" required>
+            </div>
 
-</body>
-</html>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password"
+                       placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="primary-button">
+                Login
+            </button>
+
+        </form>
+
+        <p class="auth-footer">
+            Don't have an account?
+            <a href="{% url 'register' %}">Create an account</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
